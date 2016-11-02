@@ -1,6 +1,6 @@
 /* layout */
 .calc-container {
-  width: 249px;
+  width: 240px;
   height: 444px;
   margin: auto;
   background-color: black;
@@ -37,7 +37,7 @@
 }
 
 .bigger-btn {
-  width: 122px;
+  width: 120px;
 }
 
 .calc-number {
