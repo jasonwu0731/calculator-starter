@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "In-class practice. Using webpack, babel, react",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint src",
     "build": "webpack --config webpack.config.js",
     "build:watch": "npm run build -- --watch",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
+    "babel-jest": "^17.0.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-transform-object-rest-spread": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
@@ -26,6 +27,7 @@
     "eslint-plugin-import": "^1.16.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
+    "jest": "^17.0.3",
     "jest-cli": "^16.0.2",
     "react-addons-test-utils": "^15.3.2",
     "style-loader": "^0.13.1",

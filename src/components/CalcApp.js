@@ -34,7 +34,7 @@ class CalcApp extends React.Component {
   keyInNumber(number) {
     if(this.state.last_is_equal){
       this.setState({ display_value: number });
-    }else{
+    } else {
       this.setState({ display_value: this.state.current_input.concat([number]) });
       this.setState({ current_input: this.state.current_input.concat([number]) });
     }
@@ -53,9 +53,6 @@ class CalcApp extends React.Component {
           temp = temp * parseFloat(this.state.current_input)
         else if(op_old == '÷')
           temp = temp / parseFloat(this.state.current_input)
-        else {
-          console.log('Fuck keyInOperator')
-        }
       }
       this.setState({ memory: temp });
       this.setState({ operator: op });
@@ -70,17 +67,26 @@ class CalcApp extends React.Component {
   keyInEqual(equal) {
     const op = this.state.operator
     let temp = this.state.memory
-    if(op == '+')
-      temp = temp + parseFloat(this.state.current_input)
-    else if(op == '-')
-      temp = temp - parseFloat(this.state.current_input)
-    else if(op == 'x')
-      temp = temp * parseFloat(this.state.current_input)
-    else if(op == '÷')
-      temp = temp / parseFloat(this.state.current_input)
-    else {
-      console.log('Fuck keyInOperator')
+    if ( isNaN(parseFloat(this.state.current_input)) ){
+      if(op == '+')
+        temp = temp + temp
+      else if(op == '-')
+        temp = temp - temp
+      else if(op == 'x')
+        temp = temp * temp
+      else if(op == '÷')
+        temp = temp / temp
+    } else {
+      if(op == '+')
+        temp = temp + parseFloat(this.state.current_input)
+      else if(op == '-')
+        temp = temp - parseFloat(this.state.current_input)
+      else if(op == 'x')
+        temp = temp * parseFloat(this.state.current_input)
+      else if(op == '÷')
+        temp = temp / parseFloat(this.state.current_input)
     }
+    
     this.setState({ memory: temp });
     this.setState({ display_value: temp });
     this.setState({ last_is_equal: 1 });

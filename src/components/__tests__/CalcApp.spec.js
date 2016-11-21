@@ -245,3 +245,119 @@ it('AC should clear state', () => {
 
   expect(app.state()).toEqual(initialState);
 });
+
+it('3 + = -> 1', () => {
+  const app = mount(<CalcApp />);
+  const rows = app.find('.calc-row');
+  const btn3 = rows.at(3).find(CalcButton).at(2);
+  const btnAdd = rows.at(3).find(CalcButton).at(3);
+  const btnEqual = rows.at(4).find(CalcButton).at(2);
+
+  btn3.simulate('click');
+  btnAdd.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('6')
+});
+
+it('3 - = -> 0', () => {
+  const app = mount(<CalcApp />);
+  const rows = app.find('.calc-row');
+  const btn3 = rows.at(3).find(CalcButton).at(2);
+  const btnMinus = rows.at(2).find(CalcButton).at(3);
+  const btnEqual = rows.at(4).find(CalcButton).at(2);
+
+  btn3.simulate('click');
+  btnMinus.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('0')
+});
+
+it('3 * = -> 9', () => {
+  const app = mount(<CalcApp />);
+  const rows = app.find('.calc-row');
+  const btn3 = rows.at(3).find(CalcButton).at(2);
+  const btnMultiple = rows.at(1).find(CalcButton).at(3);
+  const btnEqual = rows.at(4).find(CalcButton).at(2);
+
+  btn3.simulate('click');
+  btnMultiple.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('9')
+});
+
+it('3 / = -> 1', () => {
+  const app = mount(<CalcApp />);
+  const rows = app.find('.calc-row');
+  const btn3 = rows.at(3).find(CalcButton).at(2);
+  const btnDivision = rows.at(0).find(CalcButton).at(3);
+  const btnEqual = rows.at(4).find(CalcButton).at(2);
+
+  btn3.simulate('click');
+  btnDivision.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('1')
+});
+
+it('4 / 5 = -> 0.8', () => {
+  const app = mount(<CalcApp />);
+
+  const rows = app.find('.calc-row');
+
+  const row2 = rows.at(2);
+  const btn4 = row2.find(CalcButton).at(0);
+  const btn5 = row2.find(CalcButton).at(1);
+
+  const row1 = rows.at(1);
+  const btnMultiple = row1.find(CalcButton).at(3);
+
+  const row4 = rows.at(4);
+  const btn0 = row4.find(CalcButton).at(0);
+  const btnEqual = row4.find(CalcButton).at(2);
+
+  const btnDivision = rows.at(0).find(CalcButton).at(3);
+
+  btn4.simulate('click');
+  btnDivision.simulate('click');
+  btn5.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('0.8');
+});
+
+
+it('4 / 5 * 5 + 5  = -> 9', () => {
+  const app = mount(<CalcApp />);
+
+  const rows = app.find('.calc-row');
+
+  const row2 = rows.at(2);
+  const btn4 = row2.find(CalcButton).at(0);
+  const btn5 = row2.find(CalcButton).at(1);
+
+  const row1 = rows.at(1);
+  const btnMultiple = row1.find(CalcButton).at(3);
+
+  const row4 = rows.at(4);
+  const btn0 = row4.find(CalcButton).at(0);
+  const btnEqual = row4.find(CalcButton).at(2);
+
+  const btnDivision = rows.at(0).find(CalcButton).at(3);
+
+  const btnAdd = rows.at(3).find(CalcButton).at(3);
+
+  btn4.simulate('click');
+  btnDivision.simulate('click');
+  btn5.simulate('click');
+  btnMultiple.simulate('click');
+  btn5.simulate('click');
+  btnAdd.simulate('click');
+  btn5.simulate('click');
+  btnEqual.simulate('click');
+
+  expect(app.find('.calc-display').text()).toBe('9');
+});
+
